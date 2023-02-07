@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+/* Rendering mail templates */
+Route::get('/mail_render', function () {
+    return new App\Mail\MailableTest([1,2,3]);
+});
+
+/* Sending mail to mailtrap */
+Route::get('/mail_send', function () {
+    Mail::to('sojko@example.com')->send(new App\Mail\MailableTest([1,2,3]));
 });
